@@ -3,8 +3,8 @@ import "./StarsBackground.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import SearchMovie from "./pages/SearchMovie";
-import Contact from "./pages/Contact";
+import Help from "./pages/Help";
+import Movies from "./pages/Movies";
 
 
 function App() {
@@ -34,12 +34,11 @@ function App() {
         <Navbar>
           <Link to="/">Home</Link>
           <Link to="/search">Search Movies</Link>
-          <a href="/contact">Contact</a>
+          <a href="/help">Help</a>
         </Navbar>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/search" element={<SearchMovie />} />
-          
+          <Route path=":title" element={<Movies />} />          
         </Routes>
       </Router>
     </div>

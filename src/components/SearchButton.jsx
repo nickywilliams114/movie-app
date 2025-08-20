@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons'; 
 
+
 function SearchButton() {
  const [isLoading, setIsLoading] = useState(false);
+ 
 
  const handleSearchClick = () => {
   setIsLoading(true);
@@ -16,7 +18,7 @@ function SearchButton() {
  };
 
  return (
-  <button onClick={handleSearchClick} disabled={isLoading}>
+<button onClick={handleSearchClick}  disabled={isLoading}>
    {isLoading ? (
     <>
      <FontAwesomeIcon icon={faSpinner} spin /> Loading...
