@@ -78,6 +78,13 @@ h2 {
   text-align: center;
 }
 
+h2.search--results {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  font-size: 40px;
+  color: #e24405;
+}
+
 button {
   cursor: pointer;
   background-color: #7342d6;

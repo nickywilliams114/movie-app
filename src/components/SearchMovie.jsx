@@ -1,84 +1,92 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SearchButton from "./SearchButton";
 
 const SearchMovie = () => {
+  const { title } = useParams();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [searchId, setSearchId] = useState([]);
+  // const [error, setError] = useState(null);
+  const [searchTitle, setSearchTitle] = useState("");
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchMovies();
-  }, []); /// Empty dependency array ensures this runs once on mount
-  const fetchMovies = async () => {
-    try {
-      const response = await axios.get(
-        `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=fast&type=movie`
-      );
-
-      if (response.data.Response === "True") {
-        setMovies(response.data.Search.slice(0, 6));
-      } else {
-        console.error(response.data.Error);
-      }
-    } catch (err) {
-      console.error("Error fetching movies:", err);
-    }
-  };
-
-  if (loading) {
-    return <div>Loading...</div>;
+  
+  
+  async function fetchMovies() {
+    setLoading(true);
+    const { data } = await axios.get(
+      `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=fast`
+    );
+    setMovies(data);
+    setLoading(false);
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
+  function onSearch() {
+    fetchMovies(searchTitle);
   }
 
-  // function onSearch() {
-  //   fetchMovies();
-  //   console.log("Search button clicked");
+  // async function fetchMovies() {
+  //   setLoading(true);
+  //   try {
+  //     const response = await axios.get(
+  //       `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=fast&type=movie`
+  //     );
+
+  //     if (response.data.Response === "True") {
+  //       setMovies(response.data.Search.slice(0, 6));
+  //     } else {
+  //       console.error(response.data.Error);
+  //     }
+  //   } catch (err) {
+  //     console.error("Error fetching movies:", err);
+  //   }
+  //   setLoading(false);
   // };
 
   function onSearchKeyPress(key) {
     if (key === "Enter") {
-      onSearchKeyPress();
+      onSearch();
     }
   }
 
+  useEffect(() => {
+    fetchMovies();
+  }, []); /// Empty dependency array ensures this runs once on mount
+
   return (
     <>
-      <div className="movie__search">
+      <div className="search">
         <div className="input__container">
           <input
             type="text"
-            value={searchId}
-            onChande={(event) => setSearchId(event.target.value)}
-            onKeyPress={(event) => onSearchKeyPress(event.key)}
+            value={searchTitle}
+            placeholder="Search by Title, Genre, Year, or Imdb"
+            onChange={(event) => setSearchTitle(event.target.value)}
+            onKeyDown={(event) => onSearchKeyPress(event.key)}
           />
           <SearchButton />
         </div>
       </div>
-      <div className="movie-container">
-        <h2>First 6 Movies with "Fast" in the Title</h2>
-        <div className="movie-grid">
-          {movies.map((movie) => (
-            <div key={movie.imdbID} className="movie-card">
-              <img
-                src={
-                  movie.Poster !== "N/A"
-                    ? movie.Poster
-                    : "https://via.placeholder.com/200x300"
-                }
-                alt={movie.Title}
-                className="movie-poster"
-              />
-              <h3>{movie.Title}</h3>
-              <p>{movie.Year}</p>
+      <div>
+        {loading 
+          ? new Array(6).fill(0).slice(0, 6).map((_, index) => (
+            <div className="movie" key={index}>
+              <div className="movie__title">
+                <div className="movie__title--skeleton"></div>
+              </div>
+              <div className="movie__body">
+                <p className="movie__body--skeleton"></p>
+              </div>
             </div>
-          ))}
-        </div>
+            )) 
+          : movies.Search && movies.Search.slice(0, 6).map(movie => (
+              <div className="movie-list" key={movie.imdbID}>
+                <div className="movie__title">{movie.Title}</div>
+                  <p className="movie__body">{movie.Year} - {movie.Type}</p>
+              </div>
+            ))
+        }
       </div>
     </>
   );

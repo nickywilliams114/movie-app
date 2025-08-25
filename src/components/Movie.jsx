@@ -1,6 +1,6 @@
 function Movie({ title, year, imdbId, type, poster }) {
  return (
-  <div style={{ border: `2px solid black` }}>
+  <div>
    <div>{title}</div>
    <div>{year}</div>
    <div>{imdbId}</div>

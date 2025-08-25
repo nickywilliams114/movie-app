@@ -1,9 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import "./StarsBackground.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import Help from "./pages/Help";
 import Movies from "./pages/Movies";
 
 
@@ -31,11 +30,7 @@ function App() {
   return (
      <div ref={starsRef} className="stars-container">
       <Router>
-        <Navbar>
-          <Link to="/">Home</Link>
-          <Link to="/search">Search Movies</Link>
-          <a href="/help">Help</a>
-        </Navbar>
+        <Navbar />          
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path=":title" element={<Movies />} />          

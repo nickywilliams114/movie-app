@@ -1,24 +1,27 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-import SearchButton from './SearchButton';
+import MovieFind from '../assets/MovieFind.svg';
+import SearchMovie from "./SearchMovie";
 
 const Landing = () => {
   return (
     <>
-      <h1>Global Movie Platform</h1>
-      <h2>
-        Discover tons of movies at your fingertips with{" "}
-        <span style={{ color: "#0e4f74" }}>MOVIEFIND</span>
-      </h2>
-      <div className="movie__search">
-        <div className="input__container">
-          <input type="text" 
-          placeholder="Search by Title, Genre, Year, or Imdb"  />
-          <SearchButton />
-        </div>
-      </div>
+    <section id="landing">
+      <header>
+        <h1>Global Movie Platform</h1>
+          <h2>
+            Discover tons of movies at your fingertips with{" "}
+            <span style={{ color: "#0e4f74" }}>MOVIEFIND</span>
+          </h2>
+        <SearchMovie />
+        <figure className="img__wrapper">
+          <img src={MovieFind} alt="" />
+        </figure>
+      </header>
+    </section>
     </>
   );
 };
+      
+    
 
 export default Landing;

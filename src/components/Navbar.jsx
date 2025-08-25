@@ -19,7 +19,14 @@ const Navbar = () => {
             <Link to="/search" className="nav__link">
               Search Movies
             </Link>
-            <button onClick={() => window.location.href = 'mailto:nickywadhwani@outlook.com'} className="btn-help">Help</button>
+            <button
+              onClick={() =>
+                (window.location.href = "mailto:nickywadhwani@outlook.com")
+              }
+              className="btn-help"
+            >
+              Help
+            </button>
           </li>
         </ul>
       </div>
