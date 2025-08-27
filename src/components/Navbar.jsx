@@ -14,7 +14,7 @@ const Navbar = () => {
             <NavLink to="/" className="nav__link">
               Home
             </NavLink>
-            <NavLink to="/searchmovie" className="nav__link">
+            <NavLink to="/search" className="nav__link">
               Search Movies
             </NavLink>
             <button

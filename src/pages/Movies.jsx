@@ -1,13 +1,12 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../index.css";
-import SearchButton from "./SearchButton";
-import MovieCard from "./MovieCard";
+import SearchButton from "../components/SearchButton";
+import MovieCard from "../components/MovieCard";
 
 const Movies = () => {
   const { title } = useParams();
-  console.log(useParams);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTitle, setSearchTitle] = useState(title);
@@ -19,7 +18,7 @@ const Movies = () => {
 
   async function fetchMovies() {
     const { data } = await axios.get(
-      `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${title}`
+      `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=fast`
     );
     setMovies(data);
     setLoading(false);
@@ -66,7 +65,8 @@ const Movies = () => {
               ))
           : movies.Search &&
             movies.Search.slice(0, 6).map((movie) => (
-              <div className="movie-list" key={movie.imdbID}>
+              <div className="movie-list" key={movie.imdbID} onClick={() => navigate(`${movie.imdbID}`)}>
+                <MovieCard />
                 <div className="movie__title">{movie.Title}</div>
                 <p className="movie__body">
                   {movie.Year} - {movie.Type}
@@ -74,14 +74,11 @@ const Movies = () => {
               </div>
             ))}
       </div>
-      <div className="movie-list">
-      {movies.map((movie) => (
-        <MovieCard key={movie.imbID} onClick={() => navigate(`${movie.imdbID}`)} />
-      ))} 
-      </div>
     </>
   );
 };
+      
+      
 
 
 
