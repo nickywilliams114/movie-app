@@ -30,11 +30,13 @@ function App() {
   return (
      <div ref={starsRef} className="stars-container">
       <Router>
-        <Navbar />          
+        <div className="App">
+          <Navbar />          
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path=":title" element={<Movies />} />          
+          <Route path="/" component={Home} />
+          <Route path="/movies/:title" component={Movies} />          
         </Routes>
+        </div>
       </Router>
     </div>
   );

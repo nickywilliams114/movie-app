@@ -32,4 +32,4 @@ function SearchButton() {
  );
 }
 
-export default SearchButton
+export default SearchButton;
