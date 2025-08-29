@@ -1,16 +1,16 @@
 import React from "react";
 import Landing from "../components/Landing";
-import Movies from "./Movies";
 import MovieFind from "../assets/MovieFind.svg";
+import SearchMovie from "../components/SearchMovie";
 
 
 const Home = () => {
   return (
     <div>
       <Landing />
-      <Movies />
+      <SearchMovie />
       <figure className="img__wrapper">
-        <img src={MovieFind} alt="" />
+        <img src={MovieFind} alt="MovieFind Logo" />
       </figure>
     </div>
   );

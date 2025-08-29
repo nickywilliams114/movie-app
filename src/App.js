@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
+import SearchMovie from "./components/SearchMovie";
 
 
 function App() {
@@ -34,7 +35,8 @@ function App() {
           <Navbar />          
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/movies/:title" element={<Movies />} />          
+          <Route path="/search" element={<SearchMovie />} />      
+          <Route path="/movies/:title" element={<Movies />} />    
         </Routes>
         </div>
       </Router>
