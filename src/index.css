@@ -7,7 +7,7 @@
   font-family: Open Sans, sans-serif;
 }
 
-.App {
+#App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -70,19 +70,26 @@ h1 {
 }
 
 h2 {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 750;
   line-height: 1.5;
   color: #e24405;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
   text-align: center;
 }
 
 h2.search--results {
   margin-top: 60px;
   margin-bottom: 20px;
-  font-size: 40px;
+  font-size: 30px;
   color: #e24405;
+}
+
+h3 {
+  color: #e7ae01;
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 0 auto;
 }
 
 button {
@@ -152,7 +159,6 @@ button:active {
 }
 
 #landing-page {
-  display: flex;
   max-width: 100vw;
   overflow-x: hidden;
   padding: 10px 20px 0 20px;
@@ -187,7 +193,7 @@ input:focus {
   box-shadow: 0 0 0 1px #6030b1;
 }
 
-.input__container {
+.searchInput__container {
   width: 70%;
   position: relative;
   display: flex;
@@ -237,7 +243,14 @@ button.loading:active {
 
 figure.img__wrapper {
   width: 30%;
+  height: 450px;
   margin: 0 auto;
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .fa-spinner {
@@ -255,31 +268,39 @@ figure.img__wrapper {
 
 /*Movies*/
 
-.movie__list {
-  display: inline-block;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  width: calc(100% / 6);
+#movies {
+  display: grid;
+  grid-template-columns: repeat(6, 2fr);
+  padding: 0 20px;
 }
 
-/*MovieCard*/
-
-.movie__container {
-  height: 100px;
+.movies__container {
+  height: 200px;
   padding: 10px;
-  margin-top: 40px;
+  margin-top: 30px;
   font-family: Arial, sans-serif;
   text-align: center;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .movie {
-  background: #edeaeae3;
-  padding: 20px 50px;
+  justify-content: flex-start;
+  flex-direction: row;
+  background: transparent;
+  width: 80%;
+  height: 200px;
+  margin: 0 auto;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
 }
+
+.movie__list {
+  width: calc(100% / 6);
+}
+
+/*MovieCard*/
 
 .movie:hover {
   transform: scale(1.05);
@@ -288,7 +309,6 @@ figure.img__wrapper {
 .movie__poster {
   width: 100%;
   height: 95%;
-  object-fit: cover;
   border-style: outset;
   border-radius: 20px;
 }

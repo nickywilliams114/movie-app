@@ -7,7 +7,7 @@ const MovieCard = ({ movie }) => {
 
   return (
     <>
-      <div className="movie__container">
+      <div className="movies__container">
         <div className="movie" key={movie.imdbID}>
           <img className="movie__poster" src={movie.Poster !== "N/A" ? movie.Poster
               : "https://via.placeholder.com/100x200"} alt={movie.Title} /> 

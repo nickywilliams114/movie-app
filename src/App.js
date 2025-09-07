@@ -1,10 +1,31 @@
 import React, { useRef, useEffect } from "react";
 import "./StarsBackground.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
-import SearchMovie from "./components/SearchMovie";
+
+
+
+function Layout({ children }) {
+  const location = useLocation();
+
+  // Show wrapper only on home and search pages
+  const showWrapper =
+    location.pathname === "/" || location.pathname.startsWith("/search");
+
+  return (
+    <div>
+      {showWrapper && (
+        <figure className="img__wrapper">
+          <img src="./assets/MovieFind.svg" alt='MovieFind logo' />
+        </figure>
+      )}
+      {children}
+    </div>
+  );
+}
 
 
 function App() {
@@ -29,15 +50,17 @@ function App() {
   }, []);
   
   return (
-     <div ref={starsRef} className="stars-container">
+    <div ref={starsRef} className="stars-container">
       <Router>
-        <div className="App">
-          <Navbar />          
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/search" element={<SearchMovie />} />      
-          <Route path="/movies/:title" element={<Movies />} />    
-        </Routes>
+        <div id="App">
+          <Layout>
+            <Navbar />          
+              <Routes>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="/search" element={<Movies />}></Route>      
+                <Route path=":title" element={<Movies />}></Route>    
+              </Routes>
+          </Layout>
         </div>
       </Router>
     </div>

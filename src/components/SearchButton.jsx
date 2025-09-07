@@ -6,10 +6,8 @@ import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 function SearchButton() {
  const [isLoading, setIsLoading] = useState(false);
  
-
  const handleSearchClick = () => {
-  setIsLoading(true);
-    
+  setIsLoading(true);    
   setTimeout(() => {
   setIsLoading(false);
       
@@ -18,7 +16,7 @@ function SearchButton() {
  };
 
  return (
-<button onClick={handleSearchClick}  disabled={isLoading}>
+<button onClick={handleSearchClick} disabled={isLoading}>
    {isLoading ? (
     <>
      <FontAwesomeIcon icon={faSpinner} spin /> Loading...

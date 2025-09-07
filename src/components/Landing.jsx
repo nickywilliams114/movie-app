@@ -1,5 +1,5 @@
 import React from "react";
-import MovieFind from "../assets/MovieFind.svg";
+
 
 
 const Landing = () => {
@@ -11,6 +11,9 @@ const Landing = () => {
             Discover tons of movies at your fingertips with{" "}
             <span style={{ color: "#0e4f74" }}>MOVIEFIND</span>
           </h2>
+          <h3>
+            Click below to get started!
+          </h3>
     </section>
     </>
   );
