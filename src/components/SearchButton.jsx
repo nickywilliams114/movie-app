@@ -4,20 +4,21 @@ import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 
 
-function SearchButton() {
+function SearchButton({fetchMovies}) {
  const [isLoading, setIsLoading] = useState(false);
  
- function handleSearchClick(fetchMovies) {
+ async function handleSearchClick(fetchMovies) {
     setIsLoading(true);
+    await fetchMovies();
     setTimeout(() => {
       setIsLoading(false);
 
       console.log('Search completed!');
-    }, 2000);
+    }, 2000);  
   }
 
  return (
-<button onClick={handleSearchClick} disabled={isLoading}>
+  <button onClick={handleSearchClick} disabled={isLoading}>
    {isLoading ? (
     <>
      <FontAwesomeIcon icon={faSpinner} spin /> Loading...

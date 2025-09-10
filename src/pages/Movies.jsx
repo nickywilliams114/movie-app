@@ -1,9 +1,8 @@
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "../index.css";
 import Movie from "../components/Movie";
 import SearchButton from '../components/SearchButton';
-import Spinner from "../components/Spinner";
 import axios from 'axios';
 
 
@@ -12,6 +11,7 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [ searchTitle, setSearchTitle ] = useState([]);  
+  
   
 
   
@@ -51,8 +51,7 @@ const Movies = () => {
             placeholder="Search by Title, Genre, Year, or Imdb"
             onChange={(event) => setSearchTitle(event.target.value)}
             onKeyDown={(event) => onKeyDown(event.key)} />
-          <Spinner />
-          <SearchButton />
+          <SearchButton fetchMovies={fetchMovies} />
         </div>
       </div>
       {loading 
@@ -67,7 +66,7 @@ const Movies = () => {
           </div>
          ))
         : movies.search && movies.search.slice(0, 6).map(movie => (           
-          <div className="movies" key={movie.title} onClick={() => Navigate(`${movie.poster}`)}>
+          <div className="movies" key={movie.imdbID}>
             <div className="movie__title">{movie.title}</div>
             <p className="movie__body">{movie.body}
               {movie.year}</p>
