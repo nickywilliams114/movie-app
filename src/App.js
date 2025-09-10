@@ -56,9 +56,9 @@ function App() {
           <Layout>
             <Navbar />          
               <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/search" element={<Movies />}></Route>      
-                <Route path=":title" element={<Movies />}></Route>    
+                <Route path="/" exact element={<Home />}></Route>
+                <Route path="/search" element={<Movies />}></Route>     
+                <Route path=":title" element={<Movies />}></Route>
               </Routes>
           </Layout>
         </div>
@@ -66,5 +66,7 @@ function App() {
     </div>
   );
 }
+          
+          
 
 export default App;

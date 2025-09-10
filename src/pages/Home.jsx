@@ -12,7 +12,7 @@ const Home = () => {
       <div>
         <Landing />       
         <figure className="img__wrapper">
-          <img src={MovieFind} alt="MovieFind Logo" onClick={() => navigate('/search')}/>
+          <img className="homelogo" src={MovieFind} alt="MovieFind Logo" onClick={() => navigate('/search')}/>
         </figure>
       </div>
   );

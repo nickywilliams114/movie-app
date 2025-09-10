@@ -1,31 +1,33 @@
-import { useNavigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "../index.css";
-import MovieCard from "../components/MovieCard";
+import Movie from "../components/Movie";
 import SearchButton from '../components/SearchButton';
 import Spinner from "../components/Spinner";
 import axios from 'axios';
 
 
 const Movies = () => {
-  
-  const [loading, setLoading] = useState(true);
-  const [ searchTitle, setSearchTitle ] = useState([]);
+  const { title } = useParams();
   const [movies, setMovies] = useState([]);
-  let navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [ searchTitle, setSearchTitle ] = useState([]);  
+  
 
   
   async function fetchMovies() {
     const { data } = await axios.get(
       `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=fast`
     );
-    setMovies(data);
+    setMovies(data); 
     setLoading(false);
   }
+
 
   useEffect(() => {
     fetchMovies();
   }, []);
+  
 
   function onSearch() {
     fetchMovies(searchTitle);
@@ -37,18 +39,15 @@ const Movies = () => {
     }
   }
 
-  
-    
 
   return (
     <>
       <div className="search">
         <div className="searchInput__container">
-          <label for="searchMovies">Search Movies</label>
+          <label className="movie__search--label">Search Movies</label>
           <input
             type="text"
-            value={searchTitle}
-            
+            value={searchTitle}            
             placeholder="Search by Title, Genre, Year, or Imdb"
             onChange={(event) => setSearchTitle(event.target.value)}
             onKeyDown={(event) => onKeyDown(event.key)} />
@@ -56,8 +55,8 @@ const Movies = () => {
           <SearchButton />
         </div>
       </div>
-      {loading
-        ? new Array(6).fill(0).slice(0, 6).map((_, index) => (  
+      {loading 
+        ? new Array(6).fill(0).slice(0, 6).map((_, index) => (
           <div className="movie" key={index}>
             <div className="movie__title">
               <div className="movie__title--skeleton"></div>
@@ -66,14 +65,12 @@ const Movies = () => {
               <p className="movie__body--skeleton"></p>
             </div>
           </div>
-          ))
-        : movies.search && movies.search.slice(0, 6).map((movie) => (            
-          <div className="movies" key={movie.title} onClick={() => navigate(`${movie.poster}`)}>
-            <MovieCard movie={movie} />
-              <div className="movie__title">{movie.title}</div>
-                <p className="movie__body">
-                  {movie.year} - {movie.type}
-                </p>
+         ))
+        : movies.search && movies.search.slice(0, 6).map(movie => (           
+          <div className="movies" key={movie.title} onClick={() => Navigate(`${movie.poster}`)}>
+            <div className="movie__title">{movie.title}</div>
+            <p className="movie__body">{movie.body}
+              {movie.year}</p>
           </div>                            
         ))}
     </>          
