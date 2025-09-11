@@ -313,7 +313,7 @@ figure.img__wrapper {
 .movie {
   justify-content: flex-start;
   flex-direction: row;
-  background: transparent;
+  background: #fff;
   width: 80%;
   height: 200px;
   margin: 0 auto;
@@ -340,19 +340,10 @@ figure.img__wrapper {
 }
 
 .movie__title {
-  font-size: 20px;
+  font-size: 200px;
   margin: 10px 0 5px;
 }
 
-.movie.p {
-  font-size: 14px;
-  color: #555;
-}
 
-.movie__body {
-  display: none;
-}
 
-.movie__title {
-  display: none;
-}
+

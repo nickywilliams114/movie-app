@@ -7,14 +7,11 @@ import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 function SearchButton({fetchMovies}) {
  const [isLoading, setIsLoading] = useState(false);
  
- async function handleSearchClick(fetchMovies) {
+ async function handleSearchClick() {
     setIsLoading(true);
     await fetchMovies();
-    setTimeout(() => {
-      setIsLoading(false);
-
-      console.log('Search completed!');
-    }, 2000);  
+    setIsLoading(false);
+    console.log('Search completed!');    
   }
 
  return (

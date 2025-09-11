@@ -21,6 +21,7 @@ const Movies = () => {
     );
     setMovies(data); 
     setLoading(false);
+    console.log(data);
   }
 
 
@@ -65,12 +66,8 @@ const Movies = () => {
             </div>
           </div>
          ))
-        : movies.search && movies.search.slice(0, 6).map(movie => (           
-          <div className="movies" key={movie.imdbID}>
-            <div className="movie__title">{movie.title}</div>
-            <p className="movie__body">{movie.body}
-              {movie.year}</p>
-          </div>                            
+        : movies.Search && movies.Search.slice(0, 6).map(movie => (           
+          <Movie key={movie.imdbID} movie={movie} />
         ))}
     </>          
   );
