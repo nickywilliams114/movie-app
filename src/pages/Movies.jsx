@@ -7,17 +7,15 @@ import axios from 'axios';
 
 
 const Movies = () => {
-  const { title } = useParams();
+  const { title, plot } = useParams();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [ searchTitle, setSearchTitle ] = useState([]);  
-  
-  
 
   
   async function fetchMovies() {
     const { data } = await axios.get(
-      `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=fast`
+      `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchTitle}`
     );
     setMovies(data); 
     setLoading(false);
@@ -66,12 +64,15 @@ const Movies = () => {
             </div>
           </div>
          ))
-        : movies.Search && movies.Search.slice(0, 6).map(movie => (           
-          <Movie key={movie.imdbID} movie={movie} />
+        : movies.Search && movies.Search.slice(0, 6).map(movie => (
+          <div class="movies">
+            <Movie key={movie.imdbID} movie={movie} />
+          </div>           
         ))}
     </>          
   );
 };
+          
 
 
 export default Movies;
